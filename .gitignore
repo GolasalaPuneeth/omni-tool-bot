@@ -1,5 +1,7 @@
-# Ignore compiled Python files
-__pycache__/
-# Ignore virtual environment folder
-venv/
-static
+./venv
+/__pycache__/*
+/postgres/*
+__pycache__
+redis
+postgres
+pgadmin_data
