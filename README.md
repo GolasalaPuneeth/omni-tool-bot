@@ -141,8 +141,3 @@ MQTT_TOPIC_ESP32=esp32/audio/play
 
 Returns standard `audio/mpeg` byte stream for direct ESP32 hardware playback.
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
