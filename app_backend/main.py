@@ -4,6 +4,9 @@ from contextlib import asynccontextmanager
 from RoutesLayer import assistant_router
 # from DatabaseLayer import init_db
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
