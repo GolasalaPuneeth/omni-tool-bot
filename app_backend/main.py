@@ -1,7 +1,7 @@
 # from sqlmodel.ext.asyncio.session import AsyncSession
 from fastapi import FastAPI,Request,Depends
 from contextlib import asynccontextmanager
-# from RoutesLayer import FeedBackRoute
+from RoutesLayer import assistant_router
 # from DatabaseLayer import init_db
 import time
 
@@ -26,11 +26,11 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Response-Time"] = f"{execution_time:.2f} ms"
     return response
 
-# app.include_router(FeedBackRoute,prefix="/api")
+app.include_router(assistant_router,prefix="/api")
 # app.include_router(testcases)
 
 # as sample code for refference
 
-@app.get("/test_point/")
-async def test_endpoint():
-    return ['Hwllo']
+# @app.get("/test_point/")
+# async def test_endpoint():
+#     return ['Hwllo']
