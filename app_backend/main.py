@@ -1,0 +1,36 @@
+# from sqlmodel.ext.asyncio.session import AsyncSession
+# from fastapi import FastAPI,Request,Depends
+from contextlib import asynccontextmanager
+# from RoutesLayer import FeedBackRoute
+# from DatabaseLayer import init_db
+import time
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("---------------> Pull up")
+    # await init_db()
+    yield
+    print("---------------> Pull Down")
+    
+# app = FastAPI(title="Intelligent Feedback ETL API",
+#               description="Ingests customer feedback and support webhooks for asynchronous AI-powered processing, including structured extraction, PII redaction, and persistence.",
+#                version="1.0.0",
+#                lifespan=lifespan)
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.perf_counter()
+    response = await call_next(request)
+    end_time = time.perf_counter()
+    execution_time = (end_time - start_time) * 1000
+    response.headers["X-Response-Time"] = f"{execution_time:.2f} ms"
+    return response
+
+# app.include_router(FeedBackRoute,prefix="/api")
+# app.include_router(testcases)
+
+# as sample code for refference
+
+# @app.post("/students/")
+# async def create_student_endpoint():
+#     return ['Hwllo']
