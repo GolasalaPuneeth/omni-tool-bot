@@ -1,5 +1,5 @@
 # from sqlmodel.ext.asyncio.session import AsyncSession
-# from fastapi import FastAPI,Request,Depends
+from fastapi import FastAPI,Request,Depends
 from contextlib import asynccontextmanager
 # from RoutesLayer import FeedBackRoute
 # from DatabaseLayer import init_db
@@ -12,10 +12,10 @@ async def lifespan(app: FastAPI):
     yield
     print("---------------> Pull Down")
     
-# app = FastAPI(title="Intelligent Feedback ETL API",
-#               description="Ingests customer feedback and support webhooks for asynchronous AI-powered processing, including structured extraction, PII redaction, and persistence.",
-#                version="1.0.0",
-#                lifespan=lifespan)
+app = FastAPI(title="Omni bot Backend",
+              description="A conversational AI application that helps users ask questions, get instant answers, and complete tasks through natural language interactions. Built to provide personalized, context-aware responses, streamline support workflows, and improve user engagement across web and mobile experiences.",
+               version="1.0.0",
+               lifespan=lifespan)
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
@@ -31,6 +31,6 @@ async def add_process_time_header(request: Request, call_next):
 
 # as sample code for refference
 
-# @app.post("/students/")
-# async def create_student_endpoint():
-#     return ['Hwllo']
+@app.get("/test_point/")
+async def test_endpoint():
+    return ['Hwllo']
