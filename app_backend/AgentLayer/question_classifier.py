@@ -13,4 +13,4 @@ class QuestionClassifier:
     async def classify_question(self, q: str) :
         result = await self.agent.run(q)
         result = result.output
-        return {result.category,result.ambiguity_score}
+        return result.category
